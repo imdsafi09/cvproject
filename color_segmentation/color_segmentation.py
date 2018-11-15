@@ -18,31 +18,38 @@ if __name__ == '__main__':
     else:
         print('usage : python color_segmentation <image file>')
         sys.exit()
-
-    # Create trackbar for changing threshold of colors
+    # Create window for displaying images
     cv2.namedWindow('color')
-    cv2.createTrackbar('H1_min', 'color', 0, 180, nothing)
-    cv2.createTrackbar('H1_max', 'color', 0, 180, nothing)
 
-    cv2.createTrackbar('S1_min', 'color', 0, 255, nothing)
-    cv2.createTrackbar('S1_max', 'color', 0, 255, nothing)
+    # Create window for trackbar control
+    cv2.namedWindow('control')
+    cv2.createTrackbar('H1_min', 'control', 0, 180, nothing)
+    cv2.createTrackbar('H1_max', 'control', 0, 180, nothing)
 
-    cv2.createTrackbar('V1_min', 'color', 0, 255, nothing)
-    cv2.createTrackbar('V1_max', 'color', 0, 255, nothing)
+    cv2.createTrackbar('S1_min', 'control', 0, 255, nothing)
+    cv2.createTrackbar('S1_max', 'control', 0, 255, nothing)
+
+    cv2.createTrackbar('V1_min', 'control', 0, 255, nothing)
+    cv2.createTrackbar('V1_max', 'control', 0, 255, nothing)
+
+    #TODO:
+    # Testing robustness: In the current window, have a key binding which loads the nect image and applies the same threshold values.
+    # Objective: See what needs to be changed to detect the same color in different conditions.
 
     # cv2.createTrackbar('Overlay', 'color', 25, 100, nothing)
     while True:
 
         # Get trackbar positions
-        H1_min = cv2.getTrackbarPos('H1_min', 'color')
-        S1_min = cv2.getTrackbarPos('S1_min', 'color')
-        V1_min = cv2.getTrackbarPos('V1_min', 'color')
+        H1_min = cv2.getTrackbarPos('H1_min', 'control')
+        H1_max = cv2.getTrackbarPos('H1_max', 'control')
 
-        H1_max = cv2.getTrackbarPos('H1_max', 'color')
-        S1_max = cv2.getTrackbarPos('S1_max', 'color')
-        V1_max = cv2.getTrackbarPos('V1_max', 'color')
+        S1_min = cv2.getTrackbarPos('S1_min', 'control')
+        S1_max = cv2.getTrackbarPos('S1_max', 'control')
 
-        overlay_weight = cv2.getTrackbarPos('Overlay', 'color')/100
+        V1_min = cv2.getTrackbarPos('V1_min', 'control')
+        V1_max = cv2.getTrackbarPos('V1_max', 'control')
+
+        overlay_weight = cv2.getTrackbarPos('Overlay', 'control')/100
 
         # Image preprocessing
         blurred = cv2.GaussianBlur(img, (9, 9), 0)
