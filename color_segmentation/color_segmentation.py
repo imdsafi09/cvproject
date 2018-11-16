@@ -4,6 +4,8 @@ import cv2
 import numpy as np
 
 import sys
+import argparse
+import glob
 
 # Empty function called when trackbar value is changed
 def nothing(*arg):
@@ -11,14 +13,23 @@ def nothing(*arg):
 
 if __name__ == '__main__':
 
+    # Command line argument handler
+    parser = argparse.ArgumentParser(description="Example image operation over given image")
+    parser.add_argument("-i","--image", help="Location of the image file from current directory")
+    parser.add_argument("-d", "--directory", help="Directory of the image database")
+    args = parser.parse_args()
+
     # Get location of the image from command line
-    if len(sys.argv) > 1:
-        img = cv2.imread(sys.argv[1])
-        img = cv2.resize(img, (0,0), fx=0.15, fy=0.15)
-    else:
-        print('usage : python color_segmentation <image file>')
-        sys.exit()
-    # Create window for displaying images
+    if args.image:
+        img = cv2.imread(args.image)
+
+    if args.directory:
+        photos = glob.glob(args.directory + "*.jpg")
+        counter = 0
+        print(photos);
+        img = cv2.imread(photos[counter])
+    img = cv2.resize(img, (0,0), fx=0.15, fy=0.15)
+
     cv2.namedWindow('color')
 
     # Create window for trackbar control
@@ -32,9 +43,6 @@ if __name__ == '__main__':
     cv2.createTrackbar('V1_min', 'control', 0, 255, nothing)
     cv2.createTrackbar('V1_max', 'control', 0, 255, nothing)
 
-    #TODO:
-    # Testing robustness: In the current window, have a key binding which loads the nect image and applies the same threshold values.
-    # Objective: See what needs to be changed to detect the same color in different conditions.
 
     # cv2.createTrackbar('Overlay', 'color', 25, 100, nothing)
     while True:
@@ -74,6 +82,22 @@ if __name__ == '__main__':
         ch = cv2.waitKey(1)
         if ch == 27:
             break
+        if ch == 113:
+            print("H1 Min: ", H1_min, "H1 Max: ", H1_max)
+            print("S1 Min: ", S1_min, "S1 Max: ", S1_max)
+            print("V1 Min: ", V1_min, "V1 Max: ", V1_max)
+        # Changing the image
+        if args.directory:
+            if photos:
+                if ch == 106:
+                    counter = (counter + 1) % len(photos)
+                    img = cv2.imread(photos[counter])
+                    img = cv2.resize(img, (0,0), fx=0.15, fy=0.15)
+                elif ch == 108:
+                    counter = (counter - 1) % len(photos)
+                    img = cv2.imread(photos[counter])
+                    img = cv2.resize(img, (0,0), fx=0.15, fy=0.15)
+
 
     # Close windows
     cv2.destroyAllWindows()
