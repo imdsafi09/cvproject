@@ -11,6 +11,22 @@ import glob
 def nothing(*arg):
     pass
 
+# Equalise image using CLAHE
+def clahe_equalisation(img):
+    # Convert to LAB space
+    lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+    l_channel = lab[:,:,0]
+    # Create CLAHE object
+    clahe = cv2.createCLAHE()
+    cl1 = clahe.apply(l_channel)
+    # Create a copy of the LAB image to change the channel values
+    equalised = lab.copy()
+    equalised[:,:,2] = cl1
+    # Convert back to BGR
+    equalised_rgb = cv2.cvtColor(equalised, cv2.COLOR_LAB2BGR)
+    return equalised_rgb
+
+
 if __name__ == '__main__':
 
     # Command line argument handler
@@ -60,8 +76,11 @@ if __name__ == '__main__':
         overlay_weight = cv2.getTrackbarPos('Overlay', 'control')/100
 
         # Image preprocessing
-        blurred = cv2.GaussianBlur(img, (9, 9), 0)
+        equalised = clahe_equalisation(img)
+        cv2.imshow('Equalised', equalised)
+        blurred = cv2.GaussianBlur(equalised, (9, 9), 0)
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
+
 
         # Thresholding
         kernel = np.ones((9,9), np.uint8)
