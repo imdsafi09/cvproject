@@ -128,7 +128,7 @@ if __name__ == '__main__':
 
     if args.video:
         vid = cv2.VideoCapture(args.video)
-        ret, img = vid.read()
+        img = readVideo(vid)
 
         # Setup Video writing objects
 
