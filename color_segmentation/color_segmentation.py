@@ -19,6 +19,11 @@ def readImage(location):
     img = cv2.resize(img, (0,0), fx=0.15, fy=0.15)
     return img
 
+def readVideo(vid):
+    ret, frame = vid.read()
+    img = cv2.resize(frame, (0,0), fx=0.45, fy=0.45)
+    return img
+
 # Functions for natural sort
 def atoi(text):
     return int(text) if text.isdigit() else text
@@ -122,8 +127,11 @@ if __name__ == '__main__':
         img = readImage(photos[counter])
 
     if args.video:
-        print("Hellp, world!")
-        quit()
+        vid = cv2.VideoCapture(args.video)
+        ret, img = vid.read()
+
+        # Setup Video writing objects
+
 
     cv2.namedWindow('color')
 
@@ -185,7 +193,7 @@ if __name__ == '__main__':
         if ch == 27:
             break
         # Write the images
-        if ch == 119:
+        if ch == ord('w'):
             result_dir = "results/"
             cur_images = glob.glob(result_dir + "*.jpg")
             cur_images.sort(key=natural_keys)
@@ -205,8 +213,12 @@ if __name__ == '__main__':
             cv2.imwrite(result_dir+'figure_'+'mask_'+str(count)+'.jpg', vis)
             print("Finished writing.")
 
+        # Start writing the video
+        if ch == ord('v'):
+            pass
+
         # Print current values
-        if ch == 113:
+        if ch == ord('q'):
             print(face.name + " values: ")
             print("H Min: ", face.H_min, "H Max: ", face.H_max)
             print("S Min: ", face.S_min, "S Max: ", face.S_max)
@@ -221,13 +233,18 @@ if __name__ == '__main__':
             print("H Min: ", body.H_min, "H Max: ", body.H_max)
             print("S Min: ", body.S_min, "S Max: ", body.S_max)
             print("V Min: ", body.V_min, "V Max: ", body.V_max)
+
+        # Giving the next frame
+        if args.video:
+            img = readVideo(vid)
+
         # Changing the image
         if args.directory:
             if photos:
-                if ch == 106:
+                if ch == ord('l'):
                     counter = (counter + 1) % len(photos)
                     img = readImage(photos[counter])
-                elif ch == 108:
+                elif ch == ord('j'):
                     counter = (counter - 1) % len(photos)
                     img = readImage(photos[counter])
 
