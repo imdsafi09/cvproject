@@ -65,38 +65,6 @@ def normal_equalisation(img):
     final_image = cv2.cvtColor(equalised, cv2.COLOR_HSV2BGR)
     return final_image
 
-def Trackbars():
-    # Create window for trackbar control
-    cv2.namedWindow('body')
-    cv2.createTrackbar('H1_min', 'body', 27, 180, nothing)
-    cv2.createTrackbar('H1_max', 'body', 79, 180, nothing)
-
-    cv2.createTrackbar('S1_min', 'body', 33, 255, nothing)
-    cv2.createTrackbar('S1_max', 'body', 202, 255, nothing)
-
-    cv2.createTrackbar('V1_min', 'body', 0, 255, nothing)
-    cv2.createTrackbar('V1_max', 'body', 208, 255, nothing)
-
-    cv2.namedWindow('beard')
-    cv2.createTrackbar('H2_min', 'beard', 0, 180, nothing)
-    cv2.createTrackbar('H2_max', 'beard', 50, 180, nothing)
-
-    cv2.createTrackbar('S2_min', 'beard', 147, 255, nothing)
-    cv2.createTrackbar('S2_max', 'beard', 249, 255, nothing)
-
-    cv2.createTrackbar('V2_min', 'beard', 135, 255, nothing)
-    cv2.createTrackbar('V2_max', 'beard', 251, 255, nothing)
-
-    cv2.namedWindow('face')
-    cv2.createTrackbar('H3_min', 'face', 0, 180, nothing)
-    cv2.createTrackbar('H3_max', 'face', 19, 180, nothing)
-
-    cv2.createTrackbar('S3_min', 'face', 0, 255, nothing)
-    cv2.createTrackbar('S3_max', 'face', 100, 255, nothing)
-
-    cv2.createTrackbar('V3_min', 'face', 146, 255, nothing)
-    cv2.createTrackbar('V3_max', 'face', 255, 255, nothing)
-
 class Trackbar():
     def __init__(self, name, H_default=(0,0), S_default=(0,0), V_default=(0,0)):
         # Name of the trackbar window
@@ -131,36 +99,6 @@ class Trackbar():
 
         self.V_min = cv2.getTrackbarPos('V_min', self.name)
         self.V_max = cv2.getTrackbarPos('V_max', self.name)
-
-def get_track():
-    # Get trackbar positions
-    H1_min = cv2.getTrackbarPos('H1_min', 'body')
-    H1_max = cv2.getTrackbarPos('H1_max', 'body')
-
-    S1_min = cv2.getTrackbarPos('S1_min', 'body')
-    S1_max = cv2.getTrackbarPos('S1_max', 'body')
-
-    V1_min = cv2.getTrackbarPos('V1_min', 'body')
-    V1_max = cv2.getTrackbarPos('V1_max', 'body')
-
-    H2_min = cv2.getTrackbarPos('H2_min', 'beard')
-    H2_max = cv2.getTrackbarPos('H2_max', 'beard')
-
-    S2_min = cv2.getTrackbarPos('S2_min', 'beard')
-    S2_max = cv2.getTrackbarPos('S2_max', 'beard')
-
-    V2_min = cv2.getTrackbarPos('V2_min', 'beard')
-    V2_max = cv2.getTrackbarPos('V2_max', 'beard')
-
-    H3_min = cv2.getTrackbarPos('H3_min', 'face')
-    H3_max = cv2.getTrackbarPos('H3_max', 'face')
-
-    S3_min = cv2.getTrackbarPos('S3_min', 'face')
-    S3_max = cv2.getTrackbarPos('S3_max', 'face')
-
-    V3_min = cv2.getTrackbarPos('V3_min', 'face')
-    V3_max = cv2.getTrackbarPos('V3_max', 'face')
-
 
 
 if __name__ == '__main__':
