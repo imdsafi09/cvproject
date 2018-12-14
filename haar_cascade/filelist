@@ -1,0 +1,128 @@
+|-- cascade.xml : xml file having the cascade of the object
+|-- cascade_generation : Directory having all the necessary files to generate cascades
+|   |-- bg.txt   : txt file with the location of all the negative images
+|   |-- cascades : cascades are stored here after training.
+|   |   |-- cascade.xml
+|   |   |-- params.xml
+|   |   |-- stage0.xml
+|   |   |-- stage1.xml
+|   |   |-- stage2.xml
+|   |   |-- stage3.xml
+|   |   |-- stage4.xml
+|   |   |-- stage5.xml
+|   |   |-- stage6.xml
+|   |   |-- stage7.xml
+|   |   |-- stage8.xml
+|   |   `-- stage9.xml
+|   |-- neg  : directory with negative images
+|   |   |-- 1000.jpg
+|   |   |-- 1001.jpg
+|   |   |-- 1003.jpg
+|   |   |-- 1007.jpg
+|   |   |-- 1008.jpg
+|   |   |-- 100.jpg
+|   |   |-- 1010.jpg
+|   |   |-- 1013.jpg
+|   |   |-- 1014.jpg
+|   |   |-- 1016.jpg
+|   |   |-- 1018.jpg
+|   |   |-- 101.jpg
+|   |   |-- 1021.jpg
+|   |   |-- 1022.jpg
+|   |   |-- 1024.jpg
+|   |   |-- 1025.jpg
+|   |   |-- 1028.jpg
+				.
+				.
+				.
+				.       ************ 2391 negative images *************** 
+				.
+				.
+				.
+				.
+|   |   |-- background5_47.png
+|   |   |-- background5_48.png
+|   |   |-- background5_49.png
+|   |   |-- background5_4.png
+|   |   |-- background5_5.png
+|   |   |-- background5_6.png
+|   |   |-- background5_7.png
+|   |   |-- background5_8.png
+|   |   |-- background5_9.png
+|   |   `-- background5.png
+|   |-- positives.vec : Vector file for positive images which was generated using opencv_createsamples command
+|   `-- resized_images : Directory where positive images are stored. To reduce the training time, the images are resized to 192x108
+|       |-- 0001_0041_0014_0046_0046.jpg
+|       |-- 0001_0049_0028_0054_0054.jpg
+|       |-- 0001_0051_0011_0033_0033.jpg
+|       |-- 0001_0064_0029_0035_0035.jpg
+|       |-- 0001_0074_0026_0060_0060.jpg
+|       |-- 0001_0075_0013_0068_0068.jpg
+|				.
+|				.
+				.
+				.       *******  8087 positive files ********
+				.
+				.
+				.
+|       |-- 99_1.png
+|       |-- 99_2.png
+|       |-- 99_3.png
+|       |-- 99_4.png
+|       |-- 99_5.png
+|       |-- 99.png
+|       |-- 9.png
+|       `-- info.lst
+|-- dataset2_download.py  : Script to download imagenet dataset
+|-- dataset2_urls    : txt file storing plant images' urls
+|-- dataset3_urls    : txt file storing car images' urls
+|-- dataset_urls     : txt file storing people images' urls
+|-- haarcascade_picture.py : python script which takes an image as an input and detects the object using haarcascade
+|-- haarcascade.py : python script which takes a video as an input and detects the object using haarcascade
+|-- heatmap_haarcascade_picture.py : python script which takes an image as an input and detects the object using haarcascade. Output includes combined bounding box.
+|-- heatmap_haarcascade.py : python script which takes an image as an input and detects the object using haarcascade. Output includes combined bounding box.
+|-- image_augmentation.py : python script to create augmented images using affine transformation, gaussian blur, gaussian noise etc.
+|-- output_images  : Out on benchmark images. The outpur includes heatmap thresholding
+|   |-- output_Brightness-1.jpg
+|   |-- output_Brightness-2.jpg
+|   |-- output_Brightness-3.jpg
+|   |-- output_Ocluded-1.jpg
+|   |-- output_Ocluded-2.jpg
+|   |-- output_Ocluded-3.jpg
+|   |-- output_Ocluded-4.jpg
+|   |-- output_Scale-Big.jpg
+|   |-- output_Scale-Small.jpg
+|   |-- output_Scale-VerySmall.jpg
+|   |-- output_Self-Ocluded-1.jpg
+|   |-- output_Self-Ocluded-2.jpg
+|   `-- output_Standard.jpg
+|-- output_images_haarcascade : Heatmap thresholding not included. Naive hearcascade output for benchmark images.
+|   |-- output_Brightness-1.jpg
+|   |-- output_Brightness-2.jpg
+|   |-- output_Brightness-3.jpg
+|   |-- output_Ocluded-1.jpg
+|   |-- output_Ocluded-2.jpg
+|   |-- output_Ocluded-3.jpg
+|   |-- output_Ocluded-4.jpg
+|   |-- output_Scale-Big.jpg
+|   |-- output_Scale-Small.jpg
+|   |-- output_Scale-VerySmall.jpg
+|   |-- output_Self-Ocluded-1.jpg
+|   |-- output_Self-Ocluded-2.jpg
+|   `-- output_Standard.jpg
+|-- output.mp4  : Output video
+|-- test_images : Benchmark images
+|   |-- Brightness-1.jpg
+|   |-- Brightness-2.jpg
+|   |-- Brightness-3.jpg
+|   |-- Ocluded-1.jpg
+|   |-- Ocluded-2.jpg
+|   |-- Ocluded-3.jpg
+|   |-- Ocluded-4.jpg
+|   |-- Scale-Big.jpg
+|   |-- Scale-Small.jpg
+|   |-- Scale-VerySmall.jpg
+|   |-- Self-Ocluded-1.jpg
+|   |-- Self-Ocluded-2.jpg
+|   `-- Standard.jpg
+`-- Video-Lab.mp4 : Benchmark video
