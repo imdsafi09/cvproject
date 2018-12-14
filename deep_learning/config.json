@@ -1,0 +1,36 @@
+{
+    "model" : {
+        "backend":              "MobileNet",
+        "input_size":           416,
+        "anchors":              [5.40,5.63, 5.86,8.99, 7.38,8.30, 7.64,10.44, 8.61,7.24],
+        "max_box_per_image":    1,        
+        "labels":               ["toy"]
+    },
+
+    "train": {
+        "train_image_folder":   "/home/mahdielh/Desktop/CNN_OBJDETECT/keras-yolo2/pictures/",
+        "train_annot_folder":   "/home/mahdielh/Desktop/CNN_OBJDETECT/keras-yolo2/labels/",     
+          
+        "train_times":          10,
+        "pretrained_weights":   "",
+        "batch_size":           32,
+        "learning_rate":        1e-4,
+        "nb_epochs":            100,
+        "warmup_epochs":        3,
+
+        "object_scale":         5.0 ,
+        "no_object_scale":      1.0,
+        "coord_scale":          5.0,
+        "class_scale":          1.0,
+
+        "saved_weights_name":   "toy_detector_mobilenet_test",
+        "debug":                false
+    },
+
+    "valid": {
+        "valid_image_folder":   "",
+        "valid_annot_folder":   "",
+
+        "valid_times":          1
+    }
+}
